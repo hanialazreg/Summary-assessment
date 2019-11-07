@@ -59,7 +59,19 @@ function each(coll, f) {
   //wordLengths("hello its me") // [5,3,2]
   
   function wordLengths(str) {
-      // TODO: your code here 
+  	// using reduce 
+  	// return result in arrworldLength 
+  	// arrRes spliting str to words 
+      var arrRes = str.split(' ');
+      var arrworldLength = [];
+      var acc = 0 ;
+      return reduce(arrRes,function(){
+      	for (var i = 0; i < arrRes[i].length; i++) {
+      		acc = acc +1 ;	
+      	}
+      	arrworldLength.push(acc);
+      }, 0);
+      return arrworldLength ;
   }
   
   //=============================================================================
@@ -72,7 +84,17 @@ function each(coll, f) {
   // countOccurrences("hello, world!", "l"); // 3
   
   function countOccurrences(string, character) {
-      // your code is here
+      
+      // nbOcc is a variable increamented each time the character is found on the string
+      var nbOcc = 0;
+      // split the string in character the result returned in the array toArr
+      var toArr = string.split('');
+      for (var i = 0; i < toArr.length; i++) {
+      	   if(toArr[i] === character){
+      	   	nbOcc ++ ; 
+      	   }
+      }
+      return nbOcc;
   }
   
   //=============================================================================
@@ -84,8 +106,18 @@ function each(coll, f) {
   // wordsLongerThanThree("Hello Mad World") //["Hello", "World"]
   
   function wordsLongerThanThree(str) {
-      // TODO: your code here 
-  }
+  		var arrLongThree = [];
+  		// split the string in to words , iterate into the array containing the string splited into words
+  		// check the length of each word if it is great than 3 push it into the arrLongThree	
+     var arrWords = str.split(' ');
+     for (var i = 0; i < arrWords.length; i++) {
+     		if( arrWords[i].length > 3){
+     		arrLongThree.push(arrWords[i]);
+     		}
+     	}
+     return arrLongThree ;
+ 	}
+
   
   //=============================================================================
   /*                                  Q4                                        */
@@ -100,6 +132,9 @@ function each(coll, f) {
   
   function repeatString(str, count) { 
    // TODO: your code here 
+   while (count ! == 0){
+   return str + " " + repeatString(str, (count - 1);
+   }
   } 
    
   
@@ -129,6 +164,35 @@ function each(coll, f) {
   // pizza.eatSlice();
   
   // Write your code here .....
+  function makePizza(crust, size, numberOfSlice, ingredients){
+  	var pizza ={};
+  	pizza.crust = crust;
+  	pizza.size = size ;
+  	pizza.numberOfSlice = numberOfSlice ;
+  	pizza.ingredients = ingredients;
+  	pizza.
+  	return { addIngredients : function addIngredients( ingred){
+             pizza.ingredients = ingredients + " " + ingred;
+             return ingredients;
+  				} ,
+			displayIngredients : function displayIngredients(){
+				for (var i = 0; i < ingredients.length; i++) {
+				 var ing = ing + "," + ingredients[i];
+				}
+				return "The ingredients are:" + ing 
+			},
+			bakePizza: function bakePizza(){
+				return "your" + " " + pizza.size + " " + pizza.numberOfSlice + " " + "is done" ;
+			},
+			eatSlice : function eatSlice(){
+				while(pizza.numberOfSlice > 0){
+					pizza.numberOfSlice -- ;
+				}
+			}
+
+  	};
+
+  }
   
   //=============================================================================
   /*                                  Q6                                      */
@@ -153,9 +217,32 @@ function each(coll, f) {
   */
   
   // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
-  
-  // Write your code here .....
-  
+  // yes I am 
+
+  function ReadingList(read,unread,toRead, currentRead,readBooks){
+  	var list = {};
+  	list.read = read;
+  	list.unread = unread;
+  	list.toRead = toRead ;
+  	list.currentRead = currentRead;
+  	list.readBooks = readBooks ;
+  	list.addBook = addBook;
+  	return list ;
+  }
+  var AddBook = function(book){
+  	this.toRead.push(book);
+  	this.unread = this.unread + 1;
+  	return list;
+  }
+  var finishCurrentBook = function(){
+  	// toreadbook is the first book in toRead list 
+  	var toreadbook = this.toRead.shift();
+
+  	this.currentRead = toreadbook;
+  	this.read = this.read + 1; 
+  	this.unread = this.unread - 1;
+  }
+
   //=============================================================================
   /*                                  Q7                                       */
   //=============================================================================
@@ -173,8 +260,17 @@ function each(coll, f) {
   //  safe('gold-bar','big')
   //  safe('silver-bar','big') => "Can't fit"
   //  safe('money','small') => "watch gold-bar money"
+  function makeSafe(storageSizeLimit){
+  	var valStorage = storageSizeLimit;
+  	return { addItem : function addItem(item, itemSize){
+  		// test if we exceed the storage size limit 
+  		if( valStorage + itemSize > itemSize ){
+  			return "Can't fit" ;
+  		}
+  	};
+
+  }
   
-  // Write your code here .....
   
   //=============================================================================
   /*                                  Q8                                       */
@@ -216,10 +312,16 @@ function each(coll, f) {
   //================================================================================
   // Theoretical questions.
   // 1- In your own words,Why do we use Closures ?
+  //with closers we don't use global variables so we can store the content of our variable for the next invok 
+
   
   // 2- In OOP, what does "this" refer to ?
+  // this refers to the curent instence of the object
   
   // 3- What is jQuery?
+  // jQuery is a javascript librairy it facilitate acces to different elements .
   
   // 4- what is the diffrence between Closure's methods and The OOP's methods?
+  // closure methodes are declared inside the function as a return object they use just local variables 
+  // OOP methodes are declared outsid the class  and invoked as a variable to the class method . 
   
